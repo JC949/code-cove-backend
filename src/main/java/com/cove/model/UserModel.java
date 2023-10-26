@@ -6,19 +6,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Student {
+public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String username;
     private String password;
-    private String role; // Store roles as a comma-separated string
+    private String role; 
+    private int authorized; // 1 = student, 2 = instructor, 3 = admin
     private String email;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getUsername() {
@@ -39,10 +40,23 @@ public class Student {
     public void setRole(String role) {
         this.role = role;
     }
+    public int getAuthorized() {
+        return authorized;
+    }
+    public void setAuthorized(int authorized) {
+        this.authorized = authorized;
+    }
     public String getEmail() {
         return email;
     }
     public void setEmail(String email) {
+        this.email = email;
+    }
+    public UserModel(int id, String username, String password, String role, String email) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
         this.email = email;
     }
 
