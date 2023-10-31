@@ -1,7 +1,7 @@
 package com.cove.controller;
 
-import com.cove.data.CourseDataAccessInterface;
-import com.cove.model.CourseModel;
+import com.cove.data.InstructorDataAccessInterface;
+import com.cove.model.InstructorModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -14,17 +14,17 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
-public class CourseController {
+public class InstructorController {
 
 	@Autowired
-	private CourseDataAccessInterface service;
+	private InstructorDataAccessInterface service;
 
-    @GetMapping("/courses")
+    @GetMapping("/instructors")
     public String getUsers(Model model) {
-        List<CourseModel> Courses = service.getAll();
-		model.addAttribute("title", "The Courses");
-		model.addAttribute("Courses", Courses); 
-		model.addAttribute("CourseID", new CourseModel());
-		return "courses";
+        List<InstructorModel> Instructors = service.getAll();
+		model.addAttribute("title", "The Instructors");
+		model.addAttribute("Instructors", Instructors); 
+		model.addAttribute("InstructorID", new InstructorModel());
+		return "instructors";
     } 
 }
