@@ -1,54 +1,62 @@
 package com.cove.data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.cove.model.CourseMapper;
 import com.cove.model.CourseModel;
 
-
 @Service
-public class CourseRepository implements DataAccessInterface<CourseModel> {
-    
+public class CourseRepository implements CourseDataAccessInterface<CourseModel> {
+
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    private DataSource dataSource;
-    private JdbcTemplate jdbcTemplate;
+    public CourseRepository(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     @Override
     public CourseModel getById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        String sql = "SELECT * FROM `Courses` WHERE `id` = ?";
+        List<CourseModel> Courses = jdbcTemplate.query(sql, new CourseMapper(), id);
+        return Courses.isEmpty() ? null : Courses.get(0);
     }
+
     @Override
-    public Iterable<CourseModel> getAll() {
-        // TODO Auto-generated method stub
+    public CourseModel getCoursesByAuthorized(int id) {
+        throw new UnsupportedOperationException("Unimplemented method 'getCoursesByAuthorized'");
+    }
+
+    @Override
+    public List<CourseModel> getAll() {
         throw new UnsupportedOperationException("Unimplemented method 'getAll'");
     }
+
     @Override
-    public CourseModel create(CourseModel item) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+    public List<CourseModel> searchCourses(String searchTerm) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchCourses'");
     }
+
     @Override
-    public CourseModel update(CourseModel item) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public boolean createCourse(CourseModel t) {
+        throw new UnsupportedOperationException("Unimplemented method 'createCourse'");
     }
+
     @Override
-    public boolean deleteById(int id) {
-        // TODO Auto-generated method stub
+    public boolean updateCourse(CourseModel t) {
+        throw new UnsupportedOperationException("Unimplemented method 'updateCourse'");
+    }
+
+    @Override
+    public boolean deleteById(CourseModel t) {
         throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
     }
 
+
     
+
 }
-  
