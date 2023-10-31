@@ -2,7 +2,6 @@ package com.cove.data;
 
 import java.util.List;
 import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +13,13 @@ public class InstructorRepository implements InstructorDataAccessInterface<Instr
 
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public InstructorRepository(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
     public InstructorModel getById(int id) {
-        String sql = "SELECT * FROM `Instructors` WHERE `id` = ?";
+        String sql = "SELECT * FROM `instructors` WHERE `id` = ?";
         List<InstructorModel> Instructors = jdbcTemplate.query(sql, new InstructorMapper(), id);
         return Instructors.isEmpty() ? null : Instructors.get(0);
     }
