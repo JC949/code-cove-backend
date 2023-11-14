@@ -14,7 +14,7 @@
 	<name>Code-Cove</name>
 	<description>Online collaborative learning environment for computer science</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>15</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -73,8 +73,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-				<source>19</source>
-                <target>19</target>
+				<source>15</source>
+                <target>15</target>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
