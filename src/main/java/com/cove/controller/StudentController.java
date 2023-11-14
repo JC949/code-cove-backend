@@ -12,13 +12,13 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("api/")
+@RequestMapping("/api")
 public class StudentController {
 
 	@Autowired
 	private StudentDataAccessInterface service;
 
-    @GetMapping("students")
+    @GetMapping("/students")
         List<StudentModel> getStudents() {
 			return this.service.getAll();
 		}
